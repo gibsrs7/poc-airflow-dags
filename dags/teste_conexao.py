@@ -11,8 +11,9 @@ with DAG(
     tags=['poc', 'teste']
 ) as dag:
 
-    # Uma tarefa simples que imprime uma mensagem
+    # O "sleep 30" faz a tarefa esperar 30 segundos antes de finalizar.
+    # Isso dá tempo do Pod ficar vivo e você conseguir clicar em "Logs".
     t1 = BashOperator(
         task_id='diga_ola',
-        bash_command='echo "Se voce esta lendo isso, o GitSync funcionou!"'
+        bash_command='echo "Se voce esta lendo isso, o GitSync funcionou!"; sleep 30'
     )
