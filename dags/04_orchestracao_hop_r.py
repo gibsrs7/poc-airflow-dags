@@ -23,7 +23,6 @@ with DAG(
         cmds=["Rscript", "-e", "print('SUCESSO: O R esta rodando via KubernetesPodOperator!')"],
         is_delete_operator_pod=True, # Deleta o pod ao final para não sujar o cluster
         get_logs=True, # Tenta pegar o log para mostrar na UI
-        resources=resources_config,
         image_pull_policy="Always" # Garante que baixa a imagem se não tiver
     )
 
@@ -40,7 +39,6 @@ with DAG(
         cmds=["/bin/bash", "-c", "/opt/hop/hop-run.sh --version"], 
         is_delete_operator_pod=True,
         get_logs=True,
-        resources=resources_config,
         image_pull_policy="Always"
     )
 
