@@ -61,7 +61,17 @@ with DAG(
         cmds=[
             "/bin/bash", 
             "-c", 
-            f"/opt/hop/hop-run.sh -j /dados_projeto/repo/{PASTA_PROJETO} -f /dados_projeto/repo/{PASTA_PROJETO}/{NOME_PIPELINE} -l Basic"
+            """
+            echo "=== INICIO DO DEBUG: LISTANDO ARQUIVOS BAIXADOS ===" && \
+            find /dados_projeto -maxdepth 4 && \
+            echo "=== FIM DO DEBUG ===" && \
+            
+            echo "=== TENTANDO RODAR O HOP ===" && \
+            /opt/hop/hop-run.sh \
+            -j /dados_projeto/repo/estudos-hop \
+            -f /dados_projeto/repo/estudos-hop/dummy.hpl \
+            -l Basic
+            """
         ],
         
         is_delete_operator_pod=True,
