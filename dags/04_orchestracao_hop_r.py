@@ -2,13 +2,6 @@ from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 from datetime import datetime
 
-# Recursos para garantir que não trave sua máquina local
-resources_config = {
-    'request_cpu': '200m',
-    'request_memory': '256Mi',
-    'limit_cpu': '1',
-    'limit_memory': '1Gi'
-}
 
 with DAG(
     '04_orchestracao_hop_r',
