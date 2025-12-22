@@ -131,4 +131,4 @@ with DAG(
         get_logs=True
     )
 
-    task_r >> task_hop
+    [task_coleta_r, task_hop]
