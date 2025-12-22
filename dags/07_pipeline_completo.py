@@ -91,7 +91,7 @@ with DAG(
         task_id="executar_hop",
         name="pod-hop",
         namespace="airflow",
-        image="gibsonr7/hop:v1",
+        image="gibsonr7/hop:v2",
 
         init_containers=[container_git], 
 
