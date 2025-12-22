@@ -53,8 +53,7 @@ with DAG(
     schedule_interval=None,
     catchup=False,
     tags=['poc', 'etl','R']
-)
-as dag:
+) as dag:
 
 task_coleta_r= KubernetesPodOperator(
         task_id="coleta_deputados",
