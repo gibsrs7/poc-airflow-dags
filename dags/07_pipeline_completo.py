@@ -125,7 +125,7 @@ with DAG(
                 -f "/repo/{PASTA_PROJETO}/{PIPELINE_HOP}" \
                 -l Basic \
                 -p DIR_DADOS=/dados \
-                -p DB_HOST=$DB_HOST \
+                -p DB_HOST=172.25.227.73 \
                 -p DB_USER=$DB_USER \
                 -p DB_PASS=$DB_PASS
             """
