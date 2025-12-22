@@ -59,7 +59,7 @@ with DAG(
         task_id="coleta_deputados",
         name="pod-coleta-deputados",
         namespace="airflow", 
-        image="rocker/r-base:latest",
+        image="gibsonr7/coleta-r:v1",
 
         # Inicando o container git
 
