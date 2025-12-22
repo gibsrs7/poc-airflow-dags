@@ -5,8 +5,8 @@
       "databaseName": "XE",
       "pluginId": "ORACLE",
       "accessType": 0,
-      "hostname": "localhost",
-      "password": "Encrypted 2be98afc86ae28190be1da1638fc0fc9b",
+      "hostname": "${DB_HOST}",
+      "password": "${DB_PASS}",
       "pluginName": "Oracle",
       "port": "1521",
       "attributes": {
@@ -20,7 +20,7 @@
         "PREFERRED_SCHEMA_NAME": ""
       },
       "manualUrl": "",
-      "username": "ESTUDOS"
+      "username": "${DB_USER}"
     }
   },
   "name": "oracle_docker"
