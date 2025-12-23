@@ -15,12 +15,8 @@ SCRIPT_R = "scripts/coleta-deputados/coleta_api_deputados.R"
 # --- DEFINIÇÃO DOS SEGREDOS (A Mágica acontece aqui) ---
 # Secret('env', 'NOME_VAR_ENV', 'NOME_DO_COFRE_K8S', 'CHAVE_NO_COFRE')
 
-# 1. Vai criar a variável de ambiente DB_PASS pegando do secret 'oracle-secrets' chave 'password'
 secret_db_pass = Secret('env', 'DB_PASS', 'oracle-secrets', 'password')
-
-# 2. Vai criar a variável de ambiente DB_USER pegando do secret 'oracle-secrets' chave 'username'
 secret_db_user = Secret('env', 'DB_USER', 'oracle-secrets', 'username')
-
 secret_db_user = Secret('env', 'DB_HOST', 'oracle-secrets', 'host')
 
 # --------------------------------
@@ -106,15 +102,20 @@ with DAG(
         # --- Variáveis normais (não secretas) continuam aqui ---
         env_vars={
             "HOP_METADATA_FOLDER": f"/repo/{PASTA_PROJETO}/metadata",
-            "DB_HOST": "host.docker.internal", # Em PROD real, isso seria um IP ou URL da AWS/Azure
             "DIR_DADOS": "/dados"
         },
         # Nota: DB_USER e DB_PASS foram removidos do env_vars acima 
         # porque agora são injetados via parâmetro 'secrets'
 
-        cmds=[
+c       mds=[
             "/bin/bash", "-c",
             f"""
+            echo "================ DIAGNÓSTICO ================" && \
+            echo "IP recebido (DB_HOST): '$DB_HOST'" && \
+            echo "Usuario recebido (DB_USER): '$DB_USER'" && \
+            echo "Senha recebida (primeiros 2 chars): '${{DB_PASS:0:2}}...'" && \
+            echo "=============================================" && \
+
             echo "--- Registrando Projeto ---" && \
             /opt/hop/hop-conf.sh \
                 --project="projeto-etl" \
