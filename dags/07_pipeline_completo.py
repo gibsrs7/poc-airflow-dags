@@ -17,7 +17,7 @@ SCRIPT_R = "scripts/coleta-deputados/coleta_api_deputados.R"
 
 secret_db_pass = Secret('env', 'DB_PASS', 'oracle-secrets', 'password')
 secret_db_user = Secret('env', 'DB_USER', 'oracle-secrets', 'username')
-secret_db_user = Secret('env', 'DB_HOST', 'oracle-secrets', 'host')
+secret_db_host = Secret('env', 'DB_HOST', 'oracle-secrets', 'host')
 
 # --------------------------------
 
@@ -97,7 +97,7 @@ with DAG(
         volume_mounts=[mount_codigo, mount_dados],
         
         # --- AQUI: Injetamos os objetos Secret ---
-        secrets=[secret_db_pass, secret_db_user],
+        secrets=[secret_db_pass, secret_db_user, secret_db_host],
         
         # --- Variáveis normais (não secretas) continuam aqui ---
         env_vars={
