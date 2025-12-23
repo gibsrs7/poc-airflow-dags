@@ -107,7 +107,7 @@ with DAG(
         # Nota: DB_USER e DB_PASS foram removidos do env_vars acima 
         # porque agora são injetados via parâmetro 'secrets'
 
-c       mds=[
+        cmds=[
             "/bin/bash", "-c",
             f"""
             echo "================ DIAGNÓSTICO ================" && \
